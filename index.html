@@ -1,60 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mathrixian | Developer & Thinker</title>
+  <title><mathrixian> Terminal Boot</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
-      color: #222;
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+      font-size: 16px;
+      overflow: hidden;
+    }.terminal {
+  background: #0d0d0d;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  max-width: 800px;
+  margin: auto;
+  min-height: 300px;
+}
 
-    h1 {
-      color: #111;
-    }
+.command, .output, .prompt, .comment {
+  color: #f5f5f5;
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1;
+}
 
-    blockquote {
-      font-style: italic;
-      border-left: 4px solid #555;
-      padding-left: 1em;
-      margin: 1.5em 0;
-      color: #333;
-      background-color: #eaeaea;
-    }
-    
-    footer {
-      font-size: 0.9em;
-      color: #666;
-      text-align: right;
-    }
+.command {
+  color: #ffd700;
+}
 
-    section {
-      margin-top: 2rem;
-    }
+.output {
+  color: #c0c0c0;
+  margin-top: 10px;
+}
+
+.comment {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
+  <div class="terminal" id="terminal">
+    <div class="comment">// Booting up <mathrixian> terminal v1.0</div>
+    <p class="command" id="typeCommand"></p>
+    <div class="output" id="output" style="display:none;">
+<p>Initializing protocol...</p>
+<p>↳ Identity: <strong>Mathrix Dev</strong> | Anonymous Logic Architect</p>
+<p>↳ Focus Areas: Advanced Mathematics, Algorithm Engineering, Ethical Hacking, Open-Source Systems</p>
+<p>↳ Status: <em>Under Development</em></p><p>== CONNECT WITH MATHRIXIAN ==</p>
+<p>
+    🕸️ Website: <a href="https://mathrixian.github.io">https://mathrixian.github.io</a><br>
+<!--    💬 Discord: <a href="https://discord.gg/YOUR_SERVER">discord.gg/YOUR_SERVER</a><br> -->
+    👾 GitHub: <a href="https://github.com/mathrixian">github.com/mathrixian</a><br>
+    📹 Instagram: <a href="https://instagram.com/mathrixian">instagram.com/mathrixian</a><br>
+    🐦 X: <a href="https://x.com/mathrixian">x.com/mathrixian</a><br>
+    📭 Email: <a href="mailto:m4hrixian@gmail.com">m4hrixian@gmail.com</a>
+</p>
+<p class="prompt">System standing by. Awaiting next command... <span class="blink">█</span></p>
+    </div>
+  </div>  <script>
+    const commandText = './mathrixian.dev';
+    const commandElement = document.getElementById('typeCommand');
+    const outputElement = document.getElementById('output');
 
-  <h1>Mathrix Dev.</h1>
+    let i = 0;
+    function typeCommand() {
+      if (i < commandText.length) {
+        commandElement.innerHTML += commandText.charAt(i);
+        i++;
+        setTimeout(typeCommand, 100);
+      } else {
+        commandElement.innerHTML += '<br>'; // simulate ENTER key
+        setTimeout(() => {
+          outputElement.style.display = 'block';
+        }, 500);
+      }
+    }
 
-  <blockquote>
-    “Code is the matrix. Math is the core.”
-    <footer>— mathrixian</footer>
-  </blockquote>
-
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I go by <strong>Mathrixian</strong> — a curious mind exploring the convergence of <strong>mathematics</strong>, 
-      <strong>technology</strong>, and creative problem-solving. This is my digital lab where I share my open-source 
-      work, concepts, and experiments.
-    </p>
-  </section>
-
-  <footer>under development...</footer>
+    window.onload = () => {
+      setTimeout(typeCommand, 800);
+    };
+  </script></body>
 </html>
